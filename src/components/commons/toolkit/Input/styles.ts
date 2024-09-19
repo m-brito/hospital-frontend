@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 16rem;
 
   position: relative;
 
@@ -14,7 +13,7 @@ export const StyledInput = styled.input`
   position: relative;
 
   padding: 1rem;
-  max-width: 15rem;
+  width: 15rem;
 
   border: 2px solid #ccc;
   border-radius: 0.5rem;
