@@ -20,6 +20,7 @@ import {
   ImageContent,
   InputsContainer,
   TextContainer,
+  Image
 } from "./styles";
 
 export const Login: React.FC = () => {
@@ -28,7 +29,9 @@ export const Login: React.FC = () => {
 
   return (
     <Container>
-      <ImageContent></ImageContent>
+      <ImageContent>
+        <Image src='/imgs/gatinho.png'/>
+      </ImageContent>
 
       <CardLogin>
         <IconContainer>

@@ -13,7 +13,10 @@ export const Container = styled.div`
   background-color: #cce8f5;
 `;
 
-export const ImageContent = styled.div``;
+export const ImageContent = styled.div`
+display: flex;
+align-items: center;
+justify-content: center`;
 
 export const CardLogin = styled.div`
   border-radius: 1.5rem;
@@ -64,3 +67,5 @@ export const IconContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const Image = styled.img``
