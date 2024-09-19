@@ -19,9 +19,48 @@ export const CardLogin = styled.div`
   border-radius: 1.5rem;
 
   min-height: calc(100vh - 2rem);
-  background-color: #ffff;
+
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-right: 2%;
+
+  background-color: #ffff;
+`;
+
+export const InputsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+
+  width: fit-content;
+`;
+
+export const TextContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  gap: 0.25rem;
+`;
+
+export const IconContainer = styled.div`
+  min-width: fit-content;
+  max-width: fit-content;
+
+  min-height: fit-content;
+  max-height: fit-content;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

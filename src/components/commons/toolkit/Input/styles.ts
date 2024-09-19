@@ -2,28 +2,27 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 16rem;
 
   position: relative;
 
   display: flex;
   flex-direction: column;
-
 `;
 
 export const StyledInput = styled.input`
- position: relative;
+  position: relative;
 
   padding: 1rem;
-  max-width: 15rem;
+  width: 15rem;
 
-
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 0.5rem;
 
-  &:active, &:focus {
-    border-color: #cce8f5; 
-  
+  outline: none;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    border-color: #cce8f5;
   }
 `;
 
@@ -40,5 +39,4 @@ export const ToggleIcon = styled.div`
   cursor: pointer;
   left: calc(100% - 2rem);
   top: 50%;
-  
 `;
