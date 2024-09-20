@@ -13,7 +13,6 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-// Renderize seu aplicativo envolto pelo BrowserRouter
 root.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -27,8 +26,4 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 );
-
-// Se você quiser começar a medir o desempenho do seu aplicativo, passe uma função
-// para registrar resultados (por exemplo: reportWebVitals(console.log))
-// ou envie para um endpoint de análise. Aprenda mais: https://bit.ly/CRA-vitals
 reportWebVitals();
