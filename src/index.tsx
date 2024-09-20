@@ -12,6 +12,8 @@ import { Layout } from "./components/layout";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+// Renderize seu aplicativo envolto pelo BrowserRouter
 root.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -26,7 +28,7 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// Se você quiser começar a medir o desempenho do seu aplicativo, passe uma função
+// para registrar resultados (por exemplo: reportWebVitals(console.log))
+// ou envie para um endpoint de análise. Aprenda mais: https://bit.ly/CRA-vitals
 reportWebVitals();
