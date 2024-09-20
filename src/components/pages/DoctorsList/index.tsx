@@ -6,7 +6,7 @@ import { Sidebar } from "../../commons/toolkit/Sidebar";
 import { Text } from "../../commons/toolkit/Text";
 
 // Styles
-import { Container, Card, CardHeader, CardBody, Grid, Title, ContainerCards } from "./styles";
+import { Container, Card, CardHeader, CardBody,CardFooter, Grid, Title, ContainerCards, ScheduleButton } from "./styles";
 
 const doctors = [
   {
@@ -56,6 +56,11 @@ const doctors = [
 
 export const DoctorsList: React.FC = () => {
 
+  const handleScheduleClick = (doctorName: string) => {
+    console.log(`Agendando consulta com ${doctorName}`);
+    //lógica para agendar consulta
+  };
+
   return (
     <Container>
       <Sidebar />
@@ -70,6 +75,11 @@ export const DoctorsList: React.FC = () => {
                 <p><strong>CRM:</strong> {doctor.crm}</p>
                 <p><strong>Email:</strong> {doctor.email}</p>
               </CardBody>
+              <CardFooter>
+                <ScheduleButton onClick={() => handleScheduleClick(doctor.name)}>
+                  Agendar Consulta
+                </ScheduleButton>
+              </CardFooter>
             </Card>
           ))}
         </Grid>

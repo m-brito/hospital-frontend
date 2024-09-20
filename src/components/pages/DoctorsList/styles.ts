@@ -51,8 +51,22 @@ export const CardBody = styled.div`
   }
 `;
 
+export const ScheduleButton = styled.button`
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #2980b9;
+  }
+`;
+
 export const CardFooter = styled.div`
-  padding: 16px;
+  padding: 14px;
   background-color: #f7f7f7;
-  text-align: right;
+  text-align: left;
 `;
