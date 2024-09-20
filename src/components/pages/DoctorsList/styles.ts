@@ -59,7 +59,6 @@ export const ScheduleButton = styled.button`
   padding: 10px 12px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
-
   &:hover {
     background-color: #2980b9;
   }
