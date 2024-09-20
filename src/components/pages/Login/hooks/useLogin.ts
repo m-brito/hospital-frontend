@@ -20,8 +20,8 @@ export const useLogin = () => {
         navigate('/admin'); 
       } else if (data.isPaciente) {
         navigate('/paciente-home'); 
-      } else {
-        // Lógica para outros tipos de usuários
+      } else if (data.isDoctor) {
+        navigate('/doctor-home')
       }
     } else {
       alert('Credenciais inválidas');
