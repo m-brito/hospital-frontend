@@ -5,6 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import { Login } from './components/pages/Login';
 import { SignUp } from './components/pages/SignUp';
 import { Home } from './components/pages/Home';
+import { DoctorsList } from './components/pages/DoctorsList';
+
 
 
 const root = ReactDOM.createRoot(
@@ -12,7 +14,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Home/>
+    <DoctorsList/>
   </React.StrictMode>
 );
 
