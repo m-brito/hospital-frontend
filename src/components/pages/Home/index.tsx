@@ -5,7 +5,7 @@ import { Sidebar } from "../../commons/toolkit/Sidebar";
 // Styles
 import { Container, Content, Title, Paragraph } from "./styles";
 
-export const Home: React.FC = () => {
+export const Home = () => {
 
   return (
     <Container>
