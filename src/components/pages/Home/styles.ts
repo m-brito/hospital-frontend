@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const Sidebar = styled.nav`
   width: 250px;
-  background-color: #164c65;
+  background-color: #177198;
   padding: 20px;
   height: 100%;
   color: #F3FAFD;

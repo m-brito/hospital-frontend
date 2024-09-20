@@ -6,14 +6,8 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { FaCalendarCheck } from "react-icons/fa";
 import { FaSyringe } from "react-icons/fa";
 import { FaBell } from "react-icons/fa6";
+import { FaUserDoctor } from "react-icons/fa6";
 import { FaUserInjured } from "react-icons/fa6";
-
-
-
-
-
-
-
 
 
 // Components
@@ -29,17 +23,16 @@ export const Home: React.FC = () => {
     <Container>
       <Sidebar>
         <Logo>
-          <FaHeartbeat /> {/* Ícone do hospital */}
+          <FaHeartbeat /> 
         </Logo>
         <Menu>
           <MenuItem><IoHomeSharp /><p>Home</p></MenuItem>
           <MenuItem><FaCalendarAlt /><p>Agendar Consulta</p></MenuItem>
           <MenuItem><FaCalendarCheck /><p>Consultas Marcadas</p></MenuItem>
           <MenuItem><FaSyringe /><p>Exames</p></MenuItem>
-          <MenuItem><FaBell /><p>Notificações</p></MenuItem>
+          <MenuItem><FaUserDoctor /><p>Médicos</p></MenuItem>
           <MenuItem><FaUserInjured /><p>Perfil do Usuário</p></MenuItem>
 
-          
         </Menu>
       </Sidebar>
 
