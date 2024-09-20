@@ -23,6 +23,35 @@ const doctors = [
     phone: "(11) 88888-8888",
     email: "maria.oliveira@hospital.com"
   },
+  {
+    name: "Dr. João Silva",
+    specialty: "Cardiologia",
+    crm: "123456-SP",
+    phone: "(11) 99999-9999",
+    email: "joao.silva@hospital.com"
+  },
+  {
+    name: "Dr. João Silva",
+    specialty: "Cardiologia",
+    crm: "123456-SP",
+    phone: "(11) 99999-9999",
+    email: "joao.silva@hospital.com"
+  },
+  {
+    name: "Dr. João Silva",
+    specialty: "Cardiologia",
+    crm: "123456-SP",
+    phone: "(11) 99999-9999",
+    email: "joao.silva@hospital.com"
+  },
+  {
+    name: "Dr. João Silva",
+    specialty: "Cardiologia",
+    crm: "123456-SP",
+    phone: "(11) 99999-9999",
+    email: "joao.silva@hospital.com"
+  },
+  
 ];
 
 export const DoctorsList: React.FC = () => {
