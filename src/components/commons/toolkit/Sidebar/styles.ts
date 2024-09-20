@@ -30,7 +30,7 @@ export const Logo = styled.div`
   justify-content: center;
   font-size: 3rem; 
   color: #F3FAFD; 
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 export const Menu = styled.ul`

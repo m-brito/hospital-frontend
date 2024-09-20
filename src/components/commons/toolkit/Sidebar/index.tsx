@@ -21,14 +21,12 @@ export const Sidebar: React.FC = () => {
         </Logo>
         <Menu>
           <MenuItem><IoHomeSharp /><p>Home</p></MenuItem>
-          <MenuItem><FaCalendarAlt /><p>Agendar Consulta</p></MenuItem>
-          <MenuItem><FaCalendarCheck /><p>Consultas Marcadas</p></MenuItem>
+          <MenuItem><FaUserDoctor /><p>Agendar Consulta</p></MenuItem>
+          <MenuItem><FaCalendarCheck /><p>Consultas Marcadas</p></MenuItem> 
           <MenuItem><FaSyringe /><p>Exames</p></MenuItem>
-          <MenuItem><FaUserDoctor /><p>Médicos</p></MenuItem>
           <MenuItem><FaUserInjured /><p>Perfil do Usuário</p></MenuItem>
         </Menu>
       </TopMenu>
-
       <MenuItem $justifyContent="center"><IoExitOutline /><p>Sair</p></MenuItem>
 
     </SidebarContainer>

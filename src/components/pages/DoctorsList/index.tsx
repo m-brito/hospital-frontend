@@ -51,7 +51,7 @@ const doctors = [
     phone: "(11) 99999-9999",
     email: "joao.silva@hospital.com"
   },
-  
+
 ];
 
 export const DoctorsList: React.FC = () => {

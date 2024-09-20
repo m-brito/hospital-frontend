@@ -12,7 +12,7 @@ export const Home: React.FC = () => {
       <Sidebar />
       <Content>
         <Title>Bem-vindo ao Sistema Hospitalar</Title>
-        <Paragraph>Escolha uma opção no menu para começar.</Paragraph>
+        <Paragraph>Escolha uma opção no menu lateral para começar.</Paragraph>
       </Content>
     </Container>
   );
