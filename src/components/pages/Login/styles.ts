@@ -70,3 +70,11 @@ export const IconContainer = styled.div`
 `;
 
 export const Image = styled.img``;
+
+export const ErrorMessage = styled.p`
+  color: #ff4d4f;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+`;
