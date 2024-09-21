@@ -39,7 +39,7 @@ export const Menu = styled.ul`
   padding: 0;
 `;
 
-export const MenuItem = styled.li<Props>`
+export const MenuItemStyle = styled.div<Props>`
   margin: 8px 0;
   cursor: pointer;
   font-size: 18px;
