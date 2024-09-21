@@ -3,11 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom'; 
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { Login } from './components/pages/Login';
-import { SignUp } from './components/pages/SignUp';
-import { Home } from './components/pages/Home';
-import { DoctorsList } from './components/pages/DoctorsList';
-
+import App from './App'; // Certifique-se de que você tenha um arquivo App.js que configure as rotas
 
 // Crie o root
 const root = ReactDOM.createRoot(
@@ -18,12 +14,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Home />
+      <App /> {/* Renderiza o componente App que contém as rotas */}
     </BrowserRouter>
   </React.StrictMode>
 );
 
-// Se você quiser começar a medir o desempenho do seu aplicativo, passe uma função
-// para registrar resultados (por exemplo: reportWebVitals(console.log))
-// ou envie para um endpoint de análise. Aprenda mais: https://bit.ly/CRA-vitals
+// Metragem de desempenho
 reportWebVitals();

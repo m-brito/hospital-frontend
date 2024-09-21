@@ -17,18 +17,18 @@ import {
 } from "./styles";
 
 export const Login: React.FC = () => {
-  const { login } = useLogin(); // Use o hook
+  const { login } = useLogin(); // Usa o hook de login
   const [formData, setFormData] = useState({ email: '', senha: '' });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    login(formData.email, formData.senha); // Chamar o login
+    login(formData.email, formData.senha); // Chama a função login
   };
 
   return (
     <Container>
       <ImageContent>
-        <Image src='/imgs/gatinho.png' />
+        <Image src='/imgs/gatinho.png' alt="Gatinho" />
       </ImageContent>
 
       <CardLogin>
@@ -57,7 +57,8 @@ export const Login: React.FC = () => {
 
         <TextContainer>
           <Text>Ainda não possui login?</Text>
-          <Link label={"Cadastre-se"} href="/cadastro"></Link>
+          {/* Usa o Link para navegar para a página de cadastro */}
+          <Link label={"Cadastre-se"} href="/signup" />
         </TextContainer>
       </CardLogin>
     </Container>

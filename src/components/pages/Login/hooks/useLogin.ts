@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoginResponse } from './types';
 
 export const useLogin = () => {
+  const [user, setUser] = useState<LoginResponse | null>(null);
   const navigate = useNavigate();
 
   const login = async (email: string, senha: string) => {
@@ -15,18 +17,20 @@ export const useLogin = () => {
 
     if (response.ok) {
       const data: LoginResponse = await response.json();
-   
-      if (data.isAdmin) {
-        navigate('/admin'); 
-      } else if (data.isPaciente) {
-        navigate('/paciente-home'); 
-      } else if (data.isDoctor) {
-        navigate('/doctor-home')
-      }
+      setUser(data);
+
+      // Redireciona para a página home genérica
+      navigate('/home');
     } else {
       alert('Credenciais inválidas');
+      // Aqui você pode adicionar tratamento de erro, por exemplo, log para um serviço de monitoramento
     }
   };
 
-  return { login };
+  const logout = () => {
+    setUser(null);
+    navigate('/login'); // Redireciona para a página de login
+  };
+
+  return { login, logout, user };
 };

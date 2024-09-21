@@ -1,19 +1,22 @@
-// External Libraries
-import React from "react";
-import { Sidebar } from "../../commons/toolkit/Sidebar";
+import React from 'react';
+import { SideBarGenerico } from '../../commons/toolkit/SideBarGenerico'; 
+import { useLogin } from '../Login/hooks/useLogin'; // Use seu hook de login
 
-// Styles
-import { Container, Content, Title, Paragraph } from "./styles";
-
-export const Home: React.FC = () => {
+const Home = () => {
+  const { user } = useLogin(); // Puxe as informações do usuário
 
   return (
-    <Container>
-      <Sidebar />
-      <Content>
-        <Title>Bem-vindo ao Sistema Hospitalar</Title>
-        <Paragraph>Escolha uma opção no menu lateral para começar.</Paragraph>
-      </Content>
-    </Container>
+    <div style={{ display: 'flex' }}>
+      <SideBarGenerico /> {/* Sidebar para todos os usuários */}
+      <div style={{ flex: 1, padding: '20px' }}>
+        {/* Conteúdo principal */}
+        <h1>Bem-vindo ao Sistema!</h1>
+        {user && user.isAdmin && <p>Área do Administrador</p>}
+        {user && user.isPaciente && <p>Área do Paciente</p>}
+        {user && user.isDoctor && <p>Área do Médico</p>}
+      </div>
+    </div>
   );
 };
+
+export default Home;

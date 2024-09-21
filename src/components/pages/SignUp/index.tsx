@@ -1,17 +1,10 @@
-// External Libraries
-import React from "react";
+import React, { useState } from "react";
 import { FaTruckMedical } from "react-icons/fa6";
-
-// Components
 import { Link } from "../../commons/toolkit/Link";
 import { Text } from "../../commons/toolkit/Text";
 import { Input } from "../../commons/toolkit/Input";
 import { Button } from "../../commons/toolkit/Button";
-
-// Hooks
 import { useSignUp } from "./hooks/useSignUp";
-
-// Styles
 import {
   CardLogin,
   Container,
@@ -23,16 +16,19 @@ import {
   Image,
 } from "./styles";
 
-interface Props {
-  // Props
-}
+const SignUp: React.FC = () => {
+  const { signUp } = useSignUp(); // Verifique se o hook está definido corretamente
+  const [formData, setFormData] = useState({
+    nome: '',
+    data_nascimento: '',
+    email: '',
+    senha: ''
+  });
 
-export const SignUp: React.FC<Props> = (
-  {
-    /* Props */
-  }
-) => {
-  // Hooks
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    signUp(formData); // Chama a função de signup
+  };
 
   return (
     <Container>
@@ -41,30 +37,33 @@ export const SignUp: React.FC<Props> = (
           <FaTruckMedical color="#84cae8" size="3rem" />
         </IconContainer>
 
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <InputsContainer>
             <Input
               label="Nome:"
               type="text"
               name="nome"
               placeholder="Digite seu nome"
+              onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
             />
-
             <Input
               label="Data de nascimento:"
               type="date"
               name="data_nascimento"
-              placeholder="Digite seu nome"
+              onChange={(e) => setFormData({ ...formData, data_nascimento: e.target.value })}
             />
-
             <Input
               label="E-mail:"
               type="text"
               name="email"
               placeholder="Digite seu e-mail"
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
-
-            <Input label="Senha:" type="password" />
+            <Input
+              label="Senha:"
+              type="password"
+              onChange={(e) => setFormData({ ...formData, senha: e.target.value })}
+            />
           </InputsContainer>
 
           <Button label="Acessar" size="100%" />
@@ -82,3 +81,5 @@ export const SignUp: React.FC<Props> = (
     </Container>
   );
 };
+
+export default SignUp; // Certifique-se de que está exportando como default

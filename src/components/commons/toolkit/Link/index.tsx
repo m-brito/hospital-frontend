@@ -1,5 +1,6 @@
 // External Libraries
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 // Styles
 import { Container } from "./styles";
@@ -17,7 +18,7 @@ export const Link: React.FC<LinkProps> = ({
   ...props
 }) => {
   return (
-    <Container href={href} color={color} {...props} $color={color}>
+    <Container as={RouterLink} to={href} color={color} {...props} $color={color}>
       {label}
     </Container>
   );
