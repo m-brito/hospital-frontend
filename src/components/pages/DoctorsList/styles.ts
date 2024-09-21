@@ -10,9 +10,8 @@ export const ContainerCards = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     padding: 40px;
-    overflow-y: auto;
     box-sizing: border-box;
 `;
 
@@ -67,6 +66,6 @@ export const ScheduleButton = styled.button`
 
 export const CardFooter = styled.div`
   padding: 14px;
-  background-color: #f7f7f7;
+  //background-color: #D9EEF8;
   text-align: left;
 `;
