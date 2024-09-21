@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom'; 
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import App from './App'; // Certifique-se de que você tenha um arquivo App.js que configure as rotas
+import App from './App'; 
 
 // Crie o root
 const root = ReactDOM.createRoot(
