@@ -16,7 +16,6 @@ export const SidebarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   min-height: 100vh;
-  //flex-grow: 1; //nada funciona socorro
 `;
 
 export const TopMenu = styled.div`
