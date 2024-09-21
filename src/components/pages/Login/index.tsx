@@ -44,7 +44,7 @@ export const Login: React.FC = () => {
     if (user) {
       navigate("/home");
     }
-  }, [user]);
+  }, [user, navigate]);
 
   return (
     <Container>
