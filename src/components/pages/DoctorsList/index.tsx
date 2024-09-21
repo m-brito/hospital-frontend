@@ -1,13 +1,8 @@
 // External Libraries
 import React from "react";
-import { Sidebar } from "../../commons/toolkit/Sidebar";
-
-// Components
-import { Text } from "../../commons/toolkit/Text";
 
 // Styles
 import {
-  Container,
   Card,
   CardHeader,
   CardBody,
