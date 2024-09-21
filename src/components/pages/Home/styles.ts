@@ -7,7 +7,7 @@ export const Container = styled.div`
   height: 100vh;
 `;
 
-export const Content = styled.main`
+export const Content = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
