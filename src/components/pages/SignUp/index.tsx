@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FaTruckMedical } from "react-icons/fa6";
 import { Link as RouterLink } from 'react-router-dom';
-import { Link } from "../../commons/toolkit/Link";
 import { Text } from "../../commons/toolkit/Text";
 import { Input } from "../../commons/toolkit/Input";
 import { Button } from "../../commons/toolkit/Button";
