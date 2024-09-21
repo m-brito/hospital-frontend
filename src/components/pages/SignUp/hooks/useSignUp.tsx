@@ -1,46 +1,57 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios, { AxiosError } from 'axios';
+import { jwtDecode } from "jwt-decode";
+import { makeInitialInfosForm } from '../utils';
+import { FormInfos, UserInfo } from '../types';
 
-interface SignUpData {
-  nome: string;
-  data_nascimento: string;
-  email: string;
-  senha: string;
-}
+
 
 export const useSignUp = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const navigate = useNavigate(); // Hook para navegação
+  const [infos, setInfos] = useState<UserInfo | null>(makeInitialInfosForm());
 
-  const signUp = async (formData: SignUpData) => {
+  const navigate = useNavigate(); 
+
+  const signUp = async (formInfos: FormInfos) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const response = await fetch('/api/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      const response = await axios.post(
+        `${process.env.REACT_APP_HOST}/auth/register`,
+        formInfos
+      );
+
+      const token = response.data.token;
+      const decodedToken = jwtDecode<{ id: number; role: string }>(token);
+      setInfos({
+        name: formInfos.name,
+        email: formInfos.email,
+        role: decodedToken.role,
+        password: formInfos.password,
+        token,
       });
+      localStorage.setItem("token", token);
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ ...decodedToken, email: formInfos.email })
+      );
 
-      if (!response.ok) {
-        throw new Error('Erro ao cadastrar. Verifique os dados e tente novamente.');
-      }
-
-      const data = await response.json();
-      console.log('Usuário cadastrado com sucesso:', data);
-
-      // Redireciona para a página de login após o cadastro bem-sucedido
-      navigate('/login');
+      navigate('/Home');
     } catch (err) {
-      setError((err as Error).message);
+      const axiosError = err as AxiosError;
+      if (axiosError.response?.data) {
+        const message = (axiosError.response.data as { message?: string }).message;
+        setError(message || "Falha ao realizar cadastro");
+      } else {
+        setError("Falha ao realizar cadastro");
+      }
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { signUp, error, isLoading };
+  return { infos, signUp, error, isLoading };
 };
