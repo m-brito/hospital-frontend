@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { FaTruckMedical } from "react-icons/fa6";
 import { Text } from "../../commons/toolkit/Text";
 import { Link } from "../../commons/toolkit/Link";
 import { Input } from "../../commons/toolkit/Input";
 import { Button } from "../../commons/toolkit/Button";
-import { useLogin } from './hooks/useLogin';
+import { useLogin } from "./hooks/useLogin";
+import { useNavigate } from "react-router-dom";
+
 import {
   CardLogin,
   Container,
@@ -13,27 +15,46 @@ import {
   ImageContent,
   InputsContainer,
   TextContainer,
-  Image
+  Image,
+  ErrorMessage,
 } from "./styles";
 
-export const Login: React.FC = () => {
-  const { login } = useLogin(); // Use o hook
-  const [formData, setFormData] = useState({ email: '', senha: '' });
+export const Login = () => {
+  const { login, error, isLoading, user } = useLogin();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ email: "", senha: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    login(formData.email, formData.senha); // Chamar o login
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [e.target.name]: e.target.value,
+    }));
   };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await login({ email: formData.email, password: formData.senha });
+    } catch (error) {
+      console.error("Erro no login:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    }
+  }, [user]);
 
   return (
     <Container>
       <ImageContent>
-        <Image src='/imgs/gatinho.png' />
+        <Image src="/imgs/gatinho.png" />
       </ImageContent>
 
       <CardLogin>
         <IconContainer>
-          <FaTruckMedical color="#84cae8" size='3rem' />
+          <FaTruckMedical color="#84cae8" size="3rem" />
         </IconContainer>
 
         <Form onSubmit={handleSubmit}>
@@ -43,16 +64,26 @@ export const Login: React.FC = () => {
               type="text"
               name="email"
               placeholder="Digite seu e-mail"
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              value={formData.email}
+              onChange={handleInputChange}
             />
             <Input
               label="Senha:"
               type="password"
-              onChange={(e) => setFormData({ ...formData, senha: e.target.value })}
+              name="senha"
+              placeholder="Digite sua senha"
+              value={formData.senha}
+              onChange={handleInputChange}
             />
           </InputsContainer>
 
-          <Button label="Acessar" size="100%" />
+          {error && <ErrorMessage>{error}</ErrorMessage>}
+
+          <Button
+            label={isLoading ? "Carregando..." : "Acessar"}
+            size="100%"
+            disabled={isLoading}
+          />
         </Form>
 
         <TextContainer>

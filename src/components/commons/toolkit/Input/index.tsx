@@ -1,10 +1,10 @@
 // External Libraries
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Text } from "../Text";
 
 // Styles
 import { Container, StyledInput, ToggleIcon } from "./styles";
-import { Text } from "../Text";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
