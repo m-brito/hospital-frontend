@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaTruckMedical } from "react-icons/fa6";
 import { Text } from "../../commons/toolkit/Text";
 import { Link } from "../../commons/toolkit/Link";
+import { Link as RouterLink } from 'react-router-dom';
 import { Input } from "../../commons/toolkit/Input";
 import { Button } from "../../commons/toolkit/Button";
 import { useLogin } from './hooks/useLogin';
@@ -57,8 +58,7 @@ export const Login: React.FC = () => {
 
         <TextContainer>
           <Text>Ainda não possui login?</Text>
-          {/* Usa o Link para navegar para a página de cadastro */}
-          <Link label={"Cadastre-se"} href="/signup" />
+          <RouterLink to="/signup">Cadastre-se</RouterLink> 
         </TextContainer>
       </CardLogin>
     </Container>

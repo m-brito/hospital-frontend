@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaTruckMedical } from "react-icons/fa6";
+import { Link as RouterLink } from 'react-router-dom';
 import { Link } from "../../commons/toolkit/Link";
 import { Text } from "../../commons/toolkit/Text";
 import { Input } from "../../commons/toolkit/Input";
@@ -17,7 +18,7 @@ import {
 } from "./styles";
 
 const SignUp: React.FC = () => {
-  const { signUp } = useSignUp(); // Verifique se o hook está definido corretamente
+  const { signUp, error } = useSignUp(); // Verifique se o hook está definido corretamente
   const [formData, setFormData] = useState({
     nome: '',
     data_nascimento: '',
@@ -36,6 +37,8 @@ const SignUp: React.FC = () => {
         <IconContainer>
           <FaTruckMedical color="#84cae8" size="3rem" />
         </IconContainer>
+
+        {error && <p style={{ color: 'red' }}>{error}</p>} {/* Exibe mensagem de erro */}
 
         <Form onSubmit={handleSubmit}>
           <InputsContainer>
@@ -66,13 +69,14 @@ const SignUp: React.FC = () => {
             />
           </InputsContainer>
 
-          <Button label="Acessar" size="100%" />
+          <Button label="Cadastrar" size="100%" /> {/* Altere o rótulo para "Cadastrar" */}
         </Form>
 
         <TextContainer>
           <Text>Já possui login?</Text>
-          <Link label={"Acesse"} href={""}></Link>
+          <RouterLink to="/login">Acesse</RouterLink> {/* Usando RouterLink para navegação */}
         </TextContainer>
+
       </CardLogin>
 
       <ImageContent>
@@ -81,5 +85,6 @@ const SignUp: React.FC = () => {
     </Container>
   );
 };
+
 
 export default SignUp; // Certifique-se de que está exportando como default
