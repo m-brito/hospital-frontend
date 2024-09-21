@@ -1,8 +1,11 @@
 import React from "react";
 import { FaHeartbeat } from 'react-icons/fa';
-import { IoHomeSharp, IoExitOutline } from "react-icons/io5";
+import { IoHomeSharp, IoExitOutline,IoFingerPrintSharp } from "react-icons/io5";
 import { FaCalendarCheck, FaSyringe } from "react-icons/fa";
 import { FaUserDoctor, FaUserInjured } from "react-icons/fa6";
+import { MdManageAccounts } from "react-icons/md";
+
+
 
 import { SidebarContainer, Logo, Menu, MenuItem, TopMenu} from "./styles";
 
@@ -25,6 +28,9 @@ export const Sidebar: React.FC = () => {
           <MenuItem><FaCalendarCheck /><p>Consultas Marcadas</p></MenuItem> 
           <MenuItem><FaSyringe /><p>Exames</p></MenuItem>
           <MenuItem><FaUserInjured /><p>Perfil do Usuário</p></MenuItem>
+          <MenuItem><MdManageAccounts /><p>Gerenciar Médicos</p></MenuItem>
+          <MenuItem><IoFingerPrintSharp /><p>Registro de Acessos</p></MenuItem>
+
         </Menu>
       </TopMenu>
       <MenuItem $justifyContent="center"><IoExitOutline /><p>Sair</p></MenuItem>
