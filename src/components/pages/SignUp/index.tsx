@@ -74,7 +74,7 @@ const SignUp: React.FC = () => {
 
         <TextContainer>
           <Text>Já possui login?</Text>
-          <RouterLink to="/login">Acesse</RouterLink> 
+          <RouterLink to="/">Acesse</RouterLink> 
         </TextContainer>
 
       </CardLogin>
