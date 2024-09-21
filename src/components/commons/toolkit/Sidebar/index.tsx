@@ -1,7 +1,7 @@
 import React from "react";
 import { FaHeartbeat } from 'react-icons/fa';
 import { IoHomeSharp, IoExitOutline } from "react-icons/io5";
-import { FaCalendarAlt, FaCalendarCheck, FaSyringe } from "react-icons/fa";
+import { FaCalendarCheck, FaSyringe } from "react-icons/fa";
 import { FaUserDoctor, FaUserInjured } from "react-icons/fa6";
 
 import { SidebarContainer, Logo, Menu, MenuItem, TopMenu} from "./styles";
