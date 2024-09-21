@@ -1,32 +1,52 @@
-import { useNavigate } from 'react-router-dom';
-import { LoginResponse } from './types';
+import { useState } from "react";
+import axios, { AxiosError } from "axios";
+import { LoginCredentials, User } from "./types";
+import { jwtDecode } from "jwt-decode";
 
 export const useLogin = () => {
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
-  const login = async (email: string, senha: string) => {
-    const response = await fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, senha }),
-    });
+  const login = async (credentials: LoginCredentials) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_HOST}/auth/login`,
+        credentials
+      );
 
-    if (response.ok) {
-      const data: LoginResponse = await response.json();
-   
-      if (data.isAdmin) {
-        navigate('/admin'); 
-      } else if (data.isPaciente) {
-        navigate('/paciente-home'); 
-      } else if (data.isDoctor) {
-        navigate('/doctor-home')
+      const token = response.data.token;
+      const decodedToken = jwtDecode<{ id: number; role: string }>(token);
+
+      setUser({
+        id: decodedToken.id,
+        email: credentials.email,
+        role: decodedToken.role,
+        token,
+      });
+      localStorage.setItem("token", token);
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ ...decodedToken, email: credentials.email })
+      );
+    } catch (err) {
+      const axiosError = err as AxiosError;
+      if (
+        axiosError.response?.data &&
+        typeof axiosError.response.data === "object"
+      ) {
+        const message = (axiosError.response.data as { message: string })
+          .message;
+        setError(message || "Falha ao realizar login");
+      } else {
+        setError("Falha ao realizar login");
       }
-    } else {
-      alert('Credenciais inválidas');
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  return { login };
+  return { login, isLoading, error, user };
 };

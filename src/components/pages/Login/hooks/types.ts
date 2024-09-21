@@ -1,6 +1,11 @@
-export interface LoginResponse {
-    isAdmin: boolean;
-    isPaciente: boolean;
-    isDoctor: boolean;
-  }
-  
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+export interface User {
+  id: number;
+  email: string;
+  role: string;
+  token: string;
+}
