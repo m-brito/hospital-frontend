@@ -2,88 +2,23 @@ import {
   FaCalendarCheck,
   FaSyringe,
   FaUserDoctor,
-  FaUserInjured,
 } from "react-icons/fa6";
 import { IoFingerPrintSharp, IoHomeSharp } from "react-icons/io5";
 import { MdManageAccounts } from "react-icons/md";
 import { MenuItemInfos } from "../MenuItem/types/MenuItemInfos";
-import { useNavigate } from "react-router-dom";
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
-const navigate = useNavigate();
+const menuItems: MenuItemInfos[] = [
+  { icon: <IoHomeSharp />, label: "Home", path: "/", roles: ["doctor", "admin", "patient"] },
 
-export type ItemMenuByRole = { [key: string]: MenuItemInfos[] };
+  { icon: <FaCalendarCheck />, label: "Consultas", path: "/ScheduledAppointments", roles: ["doctor", "patient"] },
+  { icon: <FaSyringe />, label: "Exames", path: "/Exams", roles: ["doctor", "patient"] },
 
-function handleHomeClick() {
-  navigate("/home");
-}
+  { icon: <FaUserDoctor />, label: "Agendar Consulta", path: "/ScheduleAppointment", roles: ["patient"] },
 
-function handleScheduleExamsClick() {
-  navigate("/ScheduleExams");
-}
+  { icon: <MdManageAccounts />, label: "Gerenciar Médico", path: "/ManageDoctors", roles: ["admin"] },
+  { icon: <IoFingerPrintSharp />, label: "Gerenciar Acesso", path: "/ManageAccess", roles: ["admin"] },
+];
 
-function handleScheduledAppointmentsClick() {
-  navigate("/ScheduledAppointments");
-}
-
-function handleExamsClick() {
-  navigate("/Exams");
-}
-
-function handleManageDoctorsClick() {
-  navigate("/ManageDoctors");
-}
-
-function handleManageAccessClick() {
-  navigate("/ManageAccess");
-}
-
-function handleScheduleAppointmentClick() {
-  navigate("/ScheduleAppointment");
-}
-
-
-
-export const MENU_ITEMS_BY_ROLE: ItemMenuByRole = {
-  doctor: [
-    { icon: <IoHomeSharp />, label: "Home", onClick: handleHomeClick },
-    {
-      icon: <FaUserDoctor />,
-      label: "Agendar Exames",
-      onClick: handleScheduleExamsClick,
-    },
-    {
-      icon: <FaCalendarCheck />,
-      label: "Visualizar Consultas",
-      onClick: handleScheduledAppointmentsClick,
-    },
-    { icon: <FaSyringe />, label: "Exams", onClick: handleExamsClick },
-  ],
-  admin: [
-    { icon: <IoHomeSharp />, label: "Home", onClick: handleHomeClick },
-    {
-      icon: <MdManageAccounts />,
-      label: "Gerenciar Medico",
-      onClick: handleManageDoctorsClick,
-    },
-    {
-      icon: <IoFingerPrintSharp />,
-      label: "Gerenciar Acesso",
-      onClick: handleManageAccessClick,
-    },
-  ],
-  patient: [
-    { icon: <IoHomeSharp />, label: "Home", onClick: handleHomeClick },
-    {
-      icon: <FaUserDoctor />,
-      label: "Agendar Consulta",
-      onClick: handleScheduleAppointmentClick,
-    },
-    {
-      icon: <FaCalendarCheck />,
-      label: "Vizualizar Consultas",
-      onClick: handleScheduledAppointmentsClick,
-    },
-    { icon: <FaSyringe />, label: "Exames", onClick: handleExamsClick },
-  ],
+export const getMenuItemsByRole = (role: string): MenuItemInfos[] => {
+  return menuItems.filter(item => item.roles.includes(role));
 };

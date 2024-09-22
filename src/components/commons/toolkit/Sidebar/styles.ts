@@ -22,6 +22,9 @@ export const TopMenu = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
 
 `;
 
@@ -37,6 +40,7 @@ export const Logo = styled.div`
 export const Menu = styled.ul`
   list-style: none;
   padding: 0;
+  width: 100%;
 `;
 
 export const MenuItemStyle = styled.div<Props>`
@@ -51,4 +55,3 @@ export const MenuItemStyle = styled.div<Props>`
 
   justify-content: ${({$justifyContent}) => $justifyContent ? $justifyContent : "normal"};
 `;
-

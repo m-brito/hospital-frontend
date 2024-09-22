@@ -1,20 +1,26 @@
 import React from "react";
-import { FaHeartbeat } from 'react-icons/fa';
-import { SidebarContainer, Logo, Menu,  TopMenu, MenuItemStyle} from "./styles";
-import { MENU_ITEMS_BY_ROLE } from "./constants/menuItemsByRole";
+
+import { FaHeartbeat } from "react-icons/fa";
+import { SidebarContainer, Logo, Menu, TopMenu, MenuItemStyle } from "./styles";
 import { MenuItem } from "./MenuItem";
 import { IoExitOutline } from "react-icons/io5";
+import { getMenuItemsByRole } from "./constants";
+import { useNavigate } from "react-router-dom";
+import { useLogin } from "../../../pages/Login/hooks/useLogin";
 interface Props {
-  role: string
+  role: string;
 }
 
-export const Sidebar: React.FC<Props> = ({role}) => {
+export const Sidebar: React.FC<Props> = ({ role }) => {
+  const menuItems = getMenuItemsByRole(role) || [];
 
-  const menuItems = MENU_ITEMS_BY_ROLE[role] || [];
+  const { logout } = useLogin();
 
   // Functions
-  function renderMenuItens(){
-    return menuItems.map((item, index) => <MenuItem key={index} infosMenu={item}></MenuItem>)
+  function renderMenuItens() {
+    return menuItems.map((item, index) => (
+      <MenuItem key={index} infosMenu={item}></MenuItem>
+    ));
   }
 
   return (
@@ -23,12 +29,12 @@ export const Sidebar: React.FC<Props> = ({role}) => {
         <Logo>
           <FaHeartbeat />
         </Logo>
-        <Menu>
-        {renderMenuItens()}
-        </Menu>
+        <Menu>{renderMenuItens()}</Menu>
       </TopMenu>
-      <MenuItemStyle $justifyContent="center"><IoExitOutline /><p>Sair</p></MenuItemStyle>
-
+      <MenuItemStyle $justifyContent="center" onClick={logout}>
+        <IoExitOutline />
+        <p>Sair</p>
+      </MenuItemStyle>
     </SidebarContainer>
   );
 };
