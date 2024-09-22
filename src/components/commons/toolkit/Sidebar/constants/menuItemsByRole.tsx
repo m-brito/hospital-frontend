@@ -22,5 +22,3 @@ const menuItems: MenuItemInfos[] = [
 export const getMenuItemsByRole = (role: string): MenuItemInfos[] => {
   return menuItems.filter(item => item.roles.includes(role));
 };
-
-  

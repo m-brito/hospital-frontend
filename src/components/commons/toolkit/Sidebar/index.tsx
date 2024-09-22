@@ -1,4 +1,5 @@
 import React from "react";
+
 import { FaHeartbeat } from "react-icons/fa";
 import { SidebarContainer, Logo, Menu, TopMenu, MenuItemStyle } from "./styles";
 import { MenuItem } from "./MenuItem";

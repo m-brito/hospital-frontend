@@ -15,19 +15,20 @@ import {
   TextContainer,
   Image,
 } from "./styles";
+import { FormInfos } from "./types";
 
 const SignUp: React.FC = () => {
-  const { signUp, error } = useSignUp(); // Verifique se o hook está definido corretamente
-  const [formData, setFormData] = useState({
-    nome: '',
-    data_nascimento: '',
+  const { signUp, error } = useSignUp(); 
+  const [formData, setFormData] = useState<FormInfos>({
+    name: '',
     email: '',
-    senha: ''
+    password: '',
+    birthdate: '',
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    signUp(formData); // Chama a função de signup
+    signUp(formData); 
   };
 
   return (
@@ -37,22 +38,22 @@ const SignUp: React.FC = () => {
           <FaTruckMedical color="#84cae8" size="3rem" />
         </IconContainer>
 
-        {error && <p style={{ color: 'red' }}>{error}</p>} {/* Exibe mensagem de erro */}
+        {error && <p style={{ color: 'red' }}>{error}</p>} 
 
         <Form onSubmit={handleSubmit}>
           <InputsContainer>
             <Input
               label="Nome:"
               type="text"
-              name="nome"
+              name="name"
               placeholder="Digite seu nome"
-              onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             />
             <Input
               label="Data de nascimento:"
               type="date"
-              name="data_nascimento"
-              onChange={(e) => setFormData({ ...formData, data_nascimento: e.target.value })}
+              name="birthdate"
+              onChange={(e) => setFormData({ ...formData, birthdate: e.target.value })}
             />
             <Input
               label="E-mail:"
@@ -64,16 +65,16 @@ const SignUp: React.FC = () => {
             <Input
               label="Senha:"
               type="password"
-              onChange={(e) => setFormData({ ...formData, senha: e.target.value })}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             />
           </InputsContainer>
 
-          <Button label="Cadastrar" size="100%" /> {/* Altere o rótulo para "Cadastrar" */}
+          <Button label="Cadastrar" size="100%" />
         </Form>
 
         <TextContainer>
           <Text>Já possui login?</Text>
-          <RouterLink to="/login">Acesse</RouterLink> {/* Usando RouterLink para navegação */}
+          <RouterLink to="/">Acesse</RouterLink> 
         </TextContainer>
 
       </CardLogin>
@@ -86,4 +87,4 @@ const SignUp: React.FC = () => {
 };
 
 
-export default SignUp; // Certifique-se de que está exportando como default
+export default SignUp;

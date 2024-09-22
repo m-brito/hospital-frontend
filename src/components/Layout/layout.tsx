@@ -7,6 +7,7 @@ import { useLogin } from "../pages/Login/hooks/useLogin";
 export const Layout = () => {
   const { user, isLoading } = useLogin();
   if(isLoading) return <></>;
+
   return (
     <Container>
       <Sidebar role={user?.role || ''} />

@@ -1,13 +1,12 @@
 // External Libraries
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 // Components
 import { MenuItemInfos } from "./types/MenuItemInfos";
 
 // Styles
 import { Container } from "./styles";
-import { useNavigate } from "react-router-dom";
-
 
 interface Props {
   infosMenu: MenuItemInfos;
