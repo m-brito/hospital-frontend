@@ -7,7 +7,7 @@ import {
 } from "./styles";
 
 
-export const Home = () => {
+export const Home: React.FC = () => {
   const { user } = useLogin();
 
   return (

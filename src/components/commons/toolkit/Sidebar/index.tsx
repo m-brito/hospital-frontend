@@ -5,8 +5,6 @@ import { FaCalendarCheck, FaSyringe } from "react-icons/fa";
 import { FaUserDoctor, FaUserInjured } from "react-icons/fa6";
 import { MdManageAccounts } from "react-icons/md";
 
-
-
 import { SidebarContainer, Logo, Menu, MenuItem, TopMenu} from "./styles";
 
 export const Sidebar: React.FC = () => {

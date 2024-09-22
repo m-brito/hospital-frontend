@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { Sidebar } from "../commons/toolkit/Sidebar";
 import { Container, Main } from "./styles";
 
-export const Layout = () => {
+export const Layout: React.FC = () => {
   return (
     <Container>
       <Sidebar />
