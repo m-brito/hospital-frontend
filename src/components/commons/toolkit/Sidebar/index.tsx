@@ -1,18 +1,26 @@
 import React from "react";
-import { FaHeartbeat } from 'react-icons/fa';
-import { IoHomeSharp, IoExitOutline,IoFingerPrintSharp } from "react-icons/io5";
-import { FaCalendarCheck, FaSyringe } from "react-icons/fa";
-import { FaUserDoctor, FaUserInjured } from "react-icons/fa6";
-import { MdManageAccounts } from "react-icons/md";
+import { FaHeartbeat } from "react-icons/fa";
+import { SidebarContainer, Logo, Menu, TopMenu, MenuItemStyle } from "./styles";
+import { MenuItem } from "./MenuItem";
+import { IoExitOutline } from "react-icons/io5";
+import { getMenuItemsByRole } from "./constants";
+import { useNavigate } from "react-router-dom";
+import { useLogin } from "../../../pages/Login/hooks/useLogin";
+interface Props {
+  role: string;
+}
 
-import { SidebarContainer, Logo, Menu, MenuItem, TopMenu} from "./styles";
+export const Sidebar: React.FC<Props> = ({ role }) => {
+  const menuItems = getMenuItemsByRole(role) || [];
 
-export const Sidebar: React.FC = () => {
+  const { logout } = useLogin();
 
-  const handleLogout = () => {
-    // Lógica para deslogar 
-    console.log("Usuário deslogado");
-  };
+  // Functions
+  function renderMenuItens() {
+    return menuItems.map((item, index) => (
+      <MenuItem key={index} infosMenu={item}></MenuItem>
+    ));
+  }
 
   return (
     <SidebarContainer>
@@ -20,19 +28,12 @@ export const Sidebar: React.FC = () => {
         <Logo>
           <FaHeartbeat />
         </Logo>
-        <Menu>
-          <MenuItem><IoHomeSharp /><p>Home</p></MenuItem>
-          <MenuItem><FaUserDoctor /><p>Agendar Consulta</p></MenuItem>
-          <MenuItem><FaCalendarCheck /><p>Consultas Marcadas</p></MenuItem> 
-          <MenuItem><FaSyringe /><p>Exames</p></MenuItem>
-          <MenuItem><FaUserInjured /><p>Perfil do Usuário</p></MenuItem>
-          <MenuItem><MdManageAccounts /><p>Gerenciar Médicos</p></MenuItem>
-          <MenuItem><IoFingerPrintSharp /><p>Registro de Acessos</p></MenuItem>
-
-        </Menu>
+        <Menu>{renderMenuItens()}</Menu>
       </TopMenu>
-      <MenuItem $justifyContent="center"><IoExitOutline /><p>Sair</p></MenuItem>
-
+      <MenuItemStyle $justifyContent="center" onClick={logout}>
+        <IoExitOutline />
+        <p>Sair</p>
+      </MenuItemStyle>
     </SidebarContainer>
   );
 };
