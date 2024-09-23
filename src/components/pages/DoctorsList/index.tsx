@@ -1,16 +1,11 @@
 // External Libraries
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // Styles
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
   Grid,
   Title,
   ContainerCards,
-  ScheduleButton,
   Label,
   Input,
   Button,
@@ -20,6 +15,7 @@ import Modal from "../../commons/toolkit/Modal";
 import axiosInstance from "../../../api";
 import { ModalFooter, ModalTitle } from "../../commons/toolkit/Modal/styles";
 import { toast } from "sonner";
+import Card from "./Card";
 
 type Doctor = {
   id: number;
@@ -38,16 +34,25 @@ export const DoctorsList: React.FC = () => {
   const [doctor, setDoctor] = useState<Doctor | undefined>(undefined);
   const [appointmentDate, setAppointmentDate] = useState<string>("");
   const [appointmentTime, setAppointmentTime] = useState<string>("");
-
-  // Functions
+  const hasFetchedRef = useRef(false);
 
   const fetchDoctors = async () => {
-    try {
-      const response = await axiosInstance.get("/doctor");
-      setDoctors(response.data);
-    } catch (error) {
-      console.error("Erro ao buscar médicos:", error);
-    }
+    if (hasFetchedRef.current) return;
+
+    hasFetchedRef.current = true;
+
+    toast.promise(
+      async () => {
+        const response = await axiosInstance.get("/doctor");
+        setDoctors(response.data);
+        return response.data;
+      },
+      {
+        loading: "Carregando médicos...",
+        success: "Médicos carregados com sucesso!",
+        error: (error) => `Erro ao buscar médicos: ${error.message}`,
+      }
+    );
   };
 
   useEffect(() => {
@@ -99,7 +104,11 @@ export const DoctorsList: React.FC = () => {
   return (
     <ContainerCards>
       {isOpen && (
-        <Modal onClose={handleCloseModal} closeOnClickOutside={true} width="50%">
+        <Modal
+          onClose={handleCloseModal}
+          closeOnClickOutside={true}
+          width="50%"
+        >
           <ModalTitle>Agendar Consulta com {doctor?.name}</ModalTitle>
           <p>
             <strong>Especialidade:</strong> {doctor?.specialty}
@@ -133,25 +142,18 @@ export const DoctorsList: React.FC = () => {
       <Title>Lista de médicos</Title>
       <Grid>
         {doctors.map((doctor, index) => (
-          <Card key={index}>
-            <CardHeader>{doctor.name}</CardHeader>
-            <CardBody>
-              <p>
-                <strong>Especialidade:</strong> {doctor.specialty}
-              </p>
-              <p>
-                <strong>CRM:</strong> {doctor.crm}
-              </p>
-              <p>
-                <strong>Email:</strong> {doctor.email}
-              </p>
-            </CardBody>
-            <CardFooter>
-              <ScheduleButton onClick={() => handleOpenModal(doctor)}>
-                Agendar Consulta
-              </ScheduleButton>
-            </CardFooter>
-          </Card>
+          <Card
+            doctor={{
+              id: doctor.id,
+              name: doctor.name,
+              specialty: doctor.specialty,
+              crm: doctor.crm,
+              role: doctor.role,
+              email: doctor.email,
+            }}
+            onSchedule={() => handleOpenModal(doctor)}
+            key={index}
+          />
         ))}
       </Grid>
     </ContainerCards>

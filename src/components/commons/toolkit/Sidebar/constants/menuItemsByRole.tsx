@@ -15,7 +15,7 @@ const menuItems: MenuItemInfos[] = [
 
   { icon: <FaUserDoctor />, label: "Medicos", path: "/doctors", roles: ["patient"] },
 
-  { icon: <MdManageAccounts />, label: "Gerenciar Médico", path: "/ManageDoctors", roles: ["admin"] },
+  { icon: <MdManageAccounts />, label: "Gerenciar Médicos", path: "/doctors", roles: ["admin"] },
   { icon: <IoFingerPrintSharp />, label: "Gerenciar Acesso", path: "/ManageAccess", roles: ["admin"] },
 ];
 
