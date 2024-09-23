@@ -2,21 +2,20 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  background-color: #F3FAFD;
+  background-color: #f3fafd;
   height: 100vh;
 `;
 
 export const ContainerCards = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100vh;
-    padding: 40px;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  padding: 40px;
+  box-sizing: border-box;
 `;
 
-export const Title = styled.h1`
-`;
+export const Title = styled.h1``;
 
 export const Grid = styled.div`
   display: grid;
@@ -37,7 +36,7 @@ export const Card = styled.div`
 `;
 
 export const CardHeader = styled.div`
-  background-color: #D9EEF8;
+  background-color: #d9eef8;
   padding: 16px;
   font-weight: bold;
   font-size: 1.2em;
@@ -68,4 +67,53 @@ export const CardFooter = styled.div`
   padding: 14px;
   //background-color: #D9EEF8;
   text-align: left;
+`;
+
+export const Label = styled.label`
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+`;
+
+export const Button = styled.button`
+  background-color: #177198;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  height: 35px;
+
+  &:hover {
+    background-color: #155b73;
+  }
+`;
+
+export const CloseButton = styled.button`
+  background: transparent;
+  color: #177198;
+  border: 1px solid #177198;
+  border-radius: 4px;
+
+  height: 35px;
+
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+    background-color: #177198;
+    color: white;
+  }
 `;

@@ -5,8 +5,8 @@ import { SidebarContainer, Logo, Menu, TopMenu, MenuItemStyle } from "./styles";
 import { MenuItem } from "./MenuItem";
 import { IoExitOutline } from "react-icons/io5";
 import { getMenuItemsByRole } from "./constants";
-import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../../pages/Login/hooks/useLogin";
+
 interface Props {
   role: string;
 }
