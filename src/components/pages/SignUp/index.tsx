@@ -18,7 +18,7 @@ import {
 import { FormInfos } from "./types";
 
 const SignUp: React.FC = () => {
-  const { signUp, errorList } = useSignUp();
+  const { signUp } = useSignUp();
   const [formData, setFormData] = useState<FormInfos>({
     name: "",
     email: "",
@@ -38,14 +38,7 @@ const SignUp: React.FC = () => {
           <FaTruckMedical color="#84cae8" size="3rem" />
         </IconContainer>
 
-        {errorList &&
-          errorList.map((err, index) => (
-            <p key={index} style={{ color: "red" }}>
-              {err.field !== "general"
-                ? `${err.field}: ${err.message}`
-                : err.message}
-            </p>
-          ))}
+       
 
         <Form onSubmit={handleSubmit}>
           <InputsContainer>
