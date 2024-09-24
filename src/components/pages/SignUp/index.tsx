@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaTruckMedical } from "react-icons/fa6";
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from "react-router-dom";
 import { Text } from "../../commons/toolkit/Text";
 import { Input } from "../../commons/toolkit/Input";
 import { Button } from "../../commons/toolkit/Button";
@@ -18,17 +18,17 @@ import {
 import { FormInfos } from "./types";
 
 const SignUp: React.FC = () => {
-  const { signUp, error } = useSignUp(); 
+  const { signUp, errorList } = useSignUp();
   const [formData, setFormData] = useState<FormInfos>({
-    name: '',
-    email: '',
-    password: '',
-    birthdate: '',
+    name: "",
+    email: "",
+    password: "",
+    birthdate: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    signUp(formData); 
+    signUp(formData);
   };
 
   return (
@@ -38,34 +38,53 @@ const SignUp: React.FC = () => {
           <FaTruckMedical color="#84cae8" size="3rem" />
         </IconContainer>
 
-        {error && <p style={{ color: 'red' }}>{error}</p>} 
+        {errorList &&
+          errorList.map((err, index) => (
+            <p key={index} style={{ color: "red" }}>
+              {err.field !== "general"
+                ? `${err.field}: ${err.message}`
+                : err.message}
+            </p>
+          ))}
 
         <Form onSubmit={handleSubmit}>
           <InputsContainer>
             <Input
+              required
               label="Nome:"
               type="text"
               name="name"
               placeholder="Digite seu nome"
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
             />
             <Input
+              required
               label="Data de nascimento:"
               type="date"
               name="birthdate"
-              onChange={(e) => setFormData({ ...formData, birthdate: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, birthdate: e.target.value })
+              }
             />
             <Input
+              required
               label="E-mail:"
-              type="text"
+              type="email"
               name="email"
               placeholder="Digite seu e-mail"
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             />
             <Input
+              required
               label="Senha:"
               type="password"
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
             />
           </InputsContainer>
 
@@ -74,9 +93,8 @@ const SignUp: React.FC = () => {
 
         <TextContainer>
           <Text>Já possui login?</Text>
-          <RouterLink to="/">Acesse</RouterLink> 
+          <RouterLink to="/">Acesse</RouterLink>
         </TextContainer>
-
       </CardLogin>
 
       <ImageContent>
@@ -85,6 +103,5 @@ const SignUp: React.FC = () => {
     </Container>
   );
 };
-
 
 export default SignUp;

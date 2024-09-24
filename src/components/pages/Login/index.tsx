@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaTruckMedical } from "react-icons/fa6";
 import { Text } from "../../commons/toolkit/Text";
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from "react-router-dom";
 import { Input } from "../../commons/toolkit/Input";
 import { Button } from "../../commons/toolkit/Button";
 import { useLogin } from "./hooks/useLogin";
@@ -60,14 +60,16 @@ export const Login: React.FC = () => {
         <Form onSubmit={handleSubmit}>
           <InputsContainer>
             <Input
+              required
               label="E-mail:"
-              type="text"
+              type="email"
               name="email"
               placeholder="Digite seu e-mail"
               value={formData.email}
               onChange={handleInputChange}
             />
             <Input
+              required
               label="Senha:"
               type="password"
               name="senha"
@@ -88,7 +90,7 @@ export const Login: React.FC = () => {
 
         <TextContainer>
           <Text>Ainda não possui login?</Text>
-          <RouterLink to="/signup">Cadastre-se</RouterLink> 
+          <RouterLink to="/signup">Cadastre-se</RouterLink>
         </TextContainer>
       </CardLogin>
     </Container>

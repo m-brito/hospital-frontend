@@ -5,10 +5,8 @@ import { jwtDecode } from "jwt-decode";
 import { makeInitialInfosForm } from '../utils';
 import { FormInfos, UserInfo } from '../types';
 
-
-
 export const useSignUp = () => {
-  const [error, setError] = useState<string | null>(null);
+  const [errorList, setErrorList] = useState<{ field: string; message: string }[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [infos, setInfos] = useState<UserInfo | null>(makeInitialInfosForm());
 
@@ -16,7 +14,7 @@ export const useSignUp = () => {
 
   const signUp = async (formInfos: FormInfos) => {
     setIsLoading(true);
-    setError(null);
+    setErrorList(null); 
 
     try {
       const response = await axios.post(
@@ -43,15 +41,19 @@ export const useSignUp = () => {
     } catch (err) {
       const axiosError = err as AxiosError;
       if (axiosError.response?.data) {
-        const message = (axiosError.response.data as { message?: string }).message;
-        setError(message || "Falha ao realizar cadastro");
+        const errors = (axiosError.response.data as { errors?: { field: string; message: string }[] }).errors;
+        if (errors) {
+          setErrorList(errors); 
+        } else {
+          setErrorList([{ field: "general", message: "Falha ao realizar cadastro" }]); 
+        }
       } else {
-        setError("Falha ao realizar cadastro");
+        setErrorList([{ field: "general", message: "Falha ao realizar cadastro" }]); 
       }
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { infos, signUp, error, isLoading };
+  return { infos, signUp, errorList, isLoading };
 };
