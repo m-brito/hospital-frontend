@@ -4,7 +4,7 @@ import {
 } from "./styles";
 
 
-export const Home = () => {
+export const AdminLog: React.FC = () => {
   
   return (
     <Container>
@@ -13,4 +13,4 @@ export const Home = () => {
   );
 };
 
-export default Home;
+export default AdminLog;
