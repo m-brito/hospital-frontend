@@ -10,12 +10,14 @@ import {
   Input,
   Button,
   CloseButton,
+  Flex,
 } from "./styles";
 import Modal from "../../commons/toolkit/Modal";
 import axiosInstance from "../../../api";
 import { ModalFooter, ModalTitle } from "../../commons/toolkit/Modal/styles";
 import { toast } from "sonner";
 import Card from "./Card";
+import { NewDoctorModal } from "./NewDoctorModal";
 
 type Doctor = {
   id: number;
@@ -29,12 +31,14 @@ type Doctor = {
 
 export const DoctorsList: React.FC = () => {
   // States
+  const [openModalNewDoctor, setOpenModalNewDoctor] = useState(false);
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [doctor, setDoctor] = useState<Doctor | undefined>(undefined);
   const [appointmentDate, setAppointmentDate] = useState<string>("");
   const [appointmentTime, setAppointmentTime] = useState<string>("");
   const hasFetchedRef = useRef(false);
+
 
   const fetchDoctors = async () => {
     if (hasFetchedRef.current) return;
@@ -101,6 +105,7 @@ export const DoctorsList: React.FC = () => {
     setIsOpen(true);
   };
 
+ 
   return (
     <ContainerCards>
       {isOpen && (
@@ -139,7 +144,12 @@ export const DoctorsList: React.FC = () => {
           </ModalFooter>
         </Modal>
       )}
-      <Title>Lista de médicos</Title>
+
+      <Flex $justifyContent="space-between" $alignItems="center">
+        <Title>Lista de médicos</Title>
+
+        <Button onClick={() => setOpenModalNewDoctor(true)}>+ Medico</Button>
+      </Flex>
       <Grid>
         {doctors.map((doctor, index) => (
           <Card
@@ -156,6 +166,14 @@ export const DoctorsList: React.FC = () => {
           />
         ))}
       </Grid>
+
+      {openModalNewDoctor && (
+        <NewDoctorModal
+        refreshDoctors={fetchDoctors}
+          open={isOpen}
+          onCloseModal={() => setOpenModalNewDoctor(false)}
+        />
+      )}
     </ContainerCards>
   );
 };
