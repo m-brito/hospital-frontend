@@ -65,11 +65,11 @@ export const CloseButton = styled.button`
 export const ModalTitle = styled.h2`
   margin: 0;
   color: #177198;
-  `;
+`;
 
 interface ModalFooterProps {
-  $direction?: "row" | "column";
-  $alignItems?: "flex-start" | "flex-end" | "center";
+  direction?: "row" | "column";
+  alignItems?: "flex-start" | "flex-end" | "center";
   $justifyContent?:
     | "flex-start"
     | "flex-end"
@@ -80,8 +80,8 @@ interface ModalFooterProps {
 
 export const ModalFooter = styled.div<ModalFooterProps>`
   display: flex;
-  flex-direction: ${({ $direction }) => $direction || "row"};
-  align-items: ${({ $alignItems }) => $alignItems || "center"};
+  flex-direction: ${({ direction }) => direction || "row"};
+  align-items: ${({ alignItems }) => alignItems || "center"};
   justify-content: ${({ $justifyContent }) => $justifyContent || "flex-start"};
   gap: 10px;
 `;

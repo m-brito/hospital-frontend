@@ -1,15 +1,11 @@
 import styled from "styled-components";
 
-export const ContainerCards = styled.div`
-  display: flex;
-  flex-direction: column;
+export const ExamContainer = styled.div`
   width: 100%;
-  height: 100vh;
-  padding: 40px;
   box-sizing: border-box;
-`;
-
-export const Title = styled.h1`
+  background-color: #f3fafd;
+  padding: 20px;
+  border-radius: 8px;
 `;
 
 export const Grid = styled.div`
