@@ -10,6 +10,7 @@ import Unauthorized from "./components/pages/ErrorPages/Unauthorized";
 import NotFound from "./components/pages/ErrorPages/NotFound";
 import AdminLog from "./components/pages/AdminLog";
 import PatientExams from "./components/pages/PatientExams";
+import RegisterExam from "./components/pages/RegisterExam";
 
 const Roles = {
   ADMIN: "admin",
@@ -28,11 +29,12 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="doctors" element={<DoctorsList />} />
           <Route path="exams" element={<PatientExams />} />
-
+        </Route>
+        <Route element={<RequireAuth allowedRoles={[Roles.DOCTOR]} />}>
+          <Route path="appointments/:id" element={<RegisterExam/>} />
         </Route>
         <Route element={<RequireAuth allowedRoles={[Roles.ADMIN]} />}>
           <Route path="log" element={<AdminLog />} />
-
         </Route>
       </Route>
       <Route path="*" element={<NotFound />} />
