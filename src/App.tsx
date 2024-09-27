@@ -38,7 +38,7 @@ const App: React.FC = () => {
           <Route path="exams" element={<PatientExams />} />
           <Route path="appointments" element={<Schedules />} />
         </Route>
-        <Route element={<RequireAuth allowedRoles={[Roles.DOCTOR]} />}>
+        <Route element={<RequireAuth allowedRoles={[Roles.DOCTOR, Roles.ADMIN]} />}>
           <Route path="appointments/:id" element={<RegisterExam/>} />
         </Route>
         <Route element={<RequireAuth allowedRoles={[Roles.ADMIN]} />}>

@@ -10,8 +10,8 @@ import { MenuItemInfos } from "../MenuItem/types/MenuItemInfos";
 const menuItems: MenuItemInfos[] = [
   { icon: <IoHomeSharp />, label: "Home", path: "/", roles: ["doctor", "admin", "patient"] },
 
-  { icon: <FaCalendarCheck />, label: "Consultas", path: "/appointments", roles: ["doctor", "patient"] },
-  { icon: <FaSyringe />, label: "Exames", path: "/exams", roles: ["doctor", "patient"] },
+  { icon: <FaCalendarCheck />, label: "Consultas", path: "/appointments", roles: ["doctor", "patient", "admin"] },
+  { icon: <FaSyringe />, label: "Exames", path: "/exams", roles: ["doctor", "patient", "admin"] },
 
   { icon: <FaUserDoctor />, label: "Medicos", path: "/doctors", roles: ["patient"] },
 
