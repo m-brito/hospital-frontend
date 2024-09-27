@@ -10,6 +10,7 @@ import Unauthorized from "./components/pages/ErrorPages/Unauthorized";
 import NotFound from "./components/pages/ErrorPages/NotFound";
 import AdminLog from "./components/pages/AdminLog";
 import PatientExams from "./components/pages/PatientExams";
+import { Schedules } from "./components/pages/Schedules";
 
 const Roles = {
   ADMIN: "admin",
@@ -24,15 +25,20 @@ const App: React.FC = () => {
       <Route path="signup" element={<SignUp />} />
       <Route path="unauthorized" element={<Unauthorized />} />
       <Route path="/" element={<Layout />}>
-        <Route element={<RequireAuth allowedRoles={[Roles.PATIENT, Roles.DOCTOR, Roles.ADMIN]} />}>
+        <Route
+          element={
+            <RequireAuth
+              allowedRoles={[Roles.PATIENT, Roles.DOCTOR, Roles.ADMIN]}
+            />
+          }
+        >
           <Route path="/" element={<Home />} />
           <Route path="doctors" element={<DoctorsList />} />
           <Route path="exams" element={<PatientExams />} />
-
+          <Route path="appointments" element={<Schedules />} />
         </Route>
         <Route element={<RequireAuth allowedRoles={[Roles.ADMIN]} />}>
           <Route path="log" element={<AdminLog />} />
-
         </Route>
       </Route>
       <Route path="*" element={<NotFound />} />
