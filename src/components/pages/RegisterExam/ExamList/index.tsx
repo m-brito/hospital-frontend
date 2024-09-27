@@ -4,6 +4,7 @@ import CardExam from "../../../commons/toolkit/Cards/CardExam";
 import { Flex } from "../../../commons/toolkit/Flex";
 import { Button } from "../../DoctorsList/styles";
 import { Doctor, Exam } from "../../../../types/types";
+import { useLogin } from "../../Login/hooks/useLogin";
 
 interface ExamListProps {
   exams: Exam[];
@@ -12,11 +13,13 @@ interface ExamListProps {
 }
 
 const ExamList: React.FC<ExamListProps> = ({ exams, appointmentDoctor, openModal }) => {
+  const { user } = useLogin();
+
   return (
     <ExamContainer>
       <Flex $justifyContent="space-between" $alignItems="center">
         <h2>Exames</h2>
-        <Button onClick={openModal}>+ Exame</Button>
+        {["doctor"].includes(user!.role) && <Button onClick={openModal}>+ Exame</Button>}
       </Flex>
       {exams.length > 0 ? (
         <Grid>
