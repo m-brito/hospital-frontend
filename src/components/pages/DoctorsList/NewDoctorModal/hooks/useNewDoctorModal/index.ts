@@ -26,7 +26,7 @@ export function useNewDoctorModal({onClose, refreshDoctors}: UseNewDoctorModalPa
 
       toast.promise(
         async () => {
-          await axiosInstance.post("/doctors/register", formData);
+          await axiosInstance.post("/auth/doctor/register", formData);
           await refreshDoctors();
           onClose()
         },
