@@ -31,3 +31,12 @@ export interface Appointment {
   patient: Patient;
   exams: Exam[];
 }
+
+export interface Log {
+  id: number;
+  date: Date;
+  time: string;
+  name: string;
+  role: string;
+  email: string;
+}

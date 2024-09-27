@@ -6,15 +6,12 @@ import { useEffect, useState } from "react";
 import { Appointment } from "../../../../../dtos/appointments";
 import axiosInstance from "../../../../../api";
 
-
 export function useSchedules() {
   // States
-  const [appointments, setAppointments] = useState<Appointment[]>([])
-
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   // Constants
   const fetchAppointment = async () => {
-    
     toast.promise(
       async () => {
         const response = await axiosInstance.get("/appointment");
@@ -27,12 +24,11 @@ export function useSchedules() {
         error: (error) => `Erro ao carregar consultas: ${error.message}`,
       }
     );
-  }
+  };
 
   useEffect(() => {
     fetchAppointment();
   }, []);
-  
 
   return { appointments };
 }

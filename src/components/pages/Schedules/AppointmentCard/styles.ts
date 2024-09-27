@@ -16,6 +16,7 @@ export const Container = styled.div`
 
   background-color: #fff;
 
+  cursor: pointer;
   &:hover {
     transform: translateY(-5px);
   }
