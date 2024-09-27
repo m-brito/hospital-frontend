@@ -13,7 +13,7 @@ import { Container } from './styles'
 
 export const Schedules: React.FC = () => {
   // Hooks
-  const { data } = useSchedules()
+  const { appointments } = useSchedules()
 
   // Constants
   const imagePaths = [
@@ -24,9 +24,9 @@ export const Schedules: React.FC = () => {
 
   // Functions
   function renderAppointmentsCards() {
-    if (!data?.length) return
+    if (!appointments?.length) return
 
-    return data.map((appointment, index) => {
+    return appointments.map((appointment, index) => {
  
       const imageChose = imagePaths[index % imagePaths.length]
 

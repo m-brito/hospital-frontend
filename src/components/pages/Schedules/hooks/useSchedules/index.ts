@@ -1,83 +1,38 @@
+// External Libraries
+import { toast } from "sonner";
+import { useEffect, useState } from "react";
+
 // Types
 import { Appointment } from "../../../../../dtos/appointments";
+import axiosInstance from "../../../../../api";
 
 
 export function useSchedules() {
   // States
+  const [appointments, setAppointments] = useState<Appointment[]>([])
+
 
   // Constants
-  const data: Appointment[] = [
-    {
-      id: 1,
-      date: "2024-09-20T03:00:00.000Z",
-      time: "15:00:00",
-      status: "scheduled",
-      doctor: {
-        id: 10,
-        name: "user4",
-        email: "emai40@gmail.com",
-        role: "doctor",
-        crm: "123123123",
-        specialty: "Medicina do Sono",
+  const fetchAppointment = async () => {
+    
+    toast.promise(
+      async () => {
+        const response = await axiosInstance.get("/appointment");
+        setAppointments(response.data);
+        return response.data;
       },
-    },
-    {
-      id: 2,
-      date: "2024-09-20T03:00:00.000Z",
-      time: "15:00:00",
-      status: "scheduled",
-      doctor: {
-        id: 10,
-        name: "user4",
-        email: "emai40@gmail.com",
-        role: "doctor",
-        crm: "123123123",
-        specialty: "Medicina do Sono",
-      },
-    },
-    {
-      id: 3,
-      date: "2024-09-20T03:00:00.000Z",
-      time: "15:00:00",
-      status: "scheduled",
-      doctor: {
-        id: 10,
-        name: "user4",
-        email: "emai40@gmail.com",
-        role: "doctor",
-        crm: "123123123",
-        specialty: "Medicina do Sono",
-      },
-    },
-    {
-      id: 4,
-      date: "2024-09-20T03:00:00.000Z",
-      time: "15:00:00",
-      status: "scheduled",
-      doctor: {
-        id: 10,
-        name: "user4",
-        email: "emai40@gmail.com",
-        role: "doctor",
-        crm: "123123123",
-        specialty: "Medicina do Sono",
-      },
-    },
-    {
-      id: 5,
-      date: "2024-09-20T03:00:00.000Z",
-      time: "15:00:00",
-      status: "scheduled",
-      doctor: {
-        id: 10,
-        name: "user4",
-        email: "emai40@gmail.com",
-        role: "doctor",
-        crm: "123123123",
-        specialty: "Medicina do Sono",
-      },
-    },
-  ];
+      {
+        loading: "Carregando consultas...",
+        success: "Consultas carregadas com sucesso!",
+        error: (error) => `Erro ao carregar consultas: ${error.message}`,
+      }
+    );
+  }
 
-  return { data };
+  useEffect(() => {
+    fetchAppointment();
+  }, []);
+  
+
+  return { appointments };
 }
