@@ -5,26 +5,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { Title, ContainerCards } from "./styles";
 import { Grid } from "../DoctorsList/styles";
 import CardExam from "../../commons/toolkit/Cards/CardExam";
-import axiosInstance from "../../../api";
-import { Exam } from "../../../types/types";
+import { useExams } from "./hooks/useExams";
 
 export const PatientExams: React.FC = () => {
-  const [exams, setExams] = useState<Exam[]>([]);
-
-  useEffect(() => {
-    const fetchExams = async () => {
-      try {
-        const response = await axiosInstance.get(
-          `${process.env.REACT_APP_HOST}/exam`
-        );
-        setExams(response.data);
-      } catch (error) {
-        console.error("Erro ao buscar exames", error);
-      }
-    };
-
-    fetchExams();
-  }, []);
+  const { exams, fetchExams } = useExams();
 
   return (
     <ContainerCards>
@@ -33,6 +17,7 @@ export const PatientExams: React.FC = () => {
         {exams.map((exam, index) => (
           <CardExam
             key={index}
+            fetchExams={fetchExams}
             date={exam.date}
             doctor={exam.doctor}
             id={exam.id}
