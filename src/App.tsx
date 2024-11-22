@@ -12,6 +12,7 @@ import AdminLog from "./components/pages/AdminLog";
 import PatientExams from "./components/pages/PatientExams";
 import RegisterExam from "./components/pages/RegisterExam";
 import { Schedules } from "./components/pages/Schedules";
+import { UserManagement } from "./components/pages/UserManagement";
 
 const Roles = {
   ADMIN: "admin",
@@ -23,6 +24,7 @@ const App: React.FC = () => {
   return (
     <Routes>
       <Route path="login" element={<Login />} />
+      <Route path="userManagment" element={<UserManagement />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="unauthorized" element={<Unauthorized />} />
       <Route path="/" element={<Layout />}>
@@ -38,8 +40,10 @@ const App: React.FC = () => {
           <Route path="exams" element={<PatientExams />} />
           <Route path="appointments" element={<Schedules />} />
         </Route>
-        <Route element={<RequireAuth allowedRoles={[Roles.DOCTOR, Roles.ADMIN]} />}>
-          <Route path="appointments/:id" element={<RegisterExam/>} />
+        <Route
+          element={<RequireAuth allowedRoles={[Roles.DOCTOR, Roles.ADMIN]} />}
+        >
+          <Route path="appointments/:id" element={<RegisterExam />} />
         </Route>
         <Route element={<RequireAuth allowedRoles={[Roles.ADMIN]} />}>
           <Route path="log" element={<AdminLog />} />
