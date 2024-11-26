@@ -23,7 +23,7 @@ import { ImagePicker } from "./components/ImagePicker";
 
 export const UserManagement: React.FC = () => {
   // Hooks
-  const { isLoading, formData, handleInputChange, handleImageSelect } =
+  const { isLoading, formData, handleInputChange, handleImageSelect, handleSubmit } =
     useUserManagement({});
 
   return (
@@ -33,7 +33,7 @@ export const UserManagement: React.FC = () => {
       </ImageContent>
 
       <Card>
-        <Form onSubmit={console.log}>
+        <Form onSubmit={handleSubmit}>
           <InputsContainer>
             <Input
               required

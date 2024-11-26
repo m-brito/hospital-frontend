@@ -3,12 +3,14 @@ import {
   FaSyringe,
   FaUserDoctor,
 } from "react-icons/fa6";
+import { CgProfile } from "react-icons/cg";
 import { IoFingerPrintSharp, IoHomeSharp } from "react-icons/io5";
 import { MdManageAccounts } from "react-icons/md";
 import { MenuItemInfos } from "../MenuItem/types/MenuItemInfos";
 
 const menuItems: MenuItemInfos[] = [
   { icon: <IoHomeSharp />, label: "Home", path: "/", roles: ["doctor", "admin", "patient"] },
+  { icon: <CgProfile />, label: "Perfil", path: "/userManagment", roles: ["doctor", "admin", "patient"] },
 
   { icon: <FaCalendarCheck />, label: "Consultas", path: "/appointments", roles: ["doctor", "patient", "admin"] },
   { icon: <FaSyringe />, label: "Exames", path: "/exams", roles: ["doctor", "patient", "admin"] },

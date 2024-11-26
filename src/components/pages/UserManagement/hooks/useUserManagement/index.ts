@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { makeInitialInfosForm } from "../../utils/makeInitialFormInfos";
 import { FormInfos, UseUserManagementParams } from "./types";
+import axiosInstance from "../../../../../api";
 
 export function useUserManagement({}: UseUserManagementParams) {
   // States
@@ -13,7 +14,7 @@ export function useUserManagement({}: UseUserManagementParams) {
   const fetchUserProfile = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get("/user/profile");
+      const response = await axiosInstance.get("/user/profile");
 
       const { photo, cep, number, neighborhood, street } = response.data;
 
@@ -96,7 +97,7 @@ export function useUserManagement({}: UseUserManagementParams) {
         number: formData.adress.number,
       };
 
-      await axios.patch("/user", data);
+      await axiosInstance.patch("/user", data);
       console.log("Dados atualizados com sucesso!");
     } catch (error) {
       console.error("Erro ao atualizar os dados:", error);
