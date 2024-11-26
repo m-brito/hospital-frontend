@@ -13,10 +13,19 @@ export const Container = styled.div`
   background-color: #cce8f5;
 `;
 
+export const ImageInfosContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+`;
+
 
 export const InputsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
 `;
 
 export const Form = styled.form`

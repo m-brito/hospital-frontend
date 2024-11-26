@@ -4,6 +4,7 @@ export interface UseUserManagementParams {
 
 export interface FormInfos {
   adress: Adress
+  photo: string
 }
 export interface Adress {
   cep: string
