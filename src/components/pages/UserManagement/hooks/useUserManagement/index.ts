@@ -3,6 +3,7 @@ import axios from "axios";
 import { makeInitialInfosForm } from "../../utils/makeInitialFormInfos";
 import { FormInfos, UseUserManagementParams } from "./types";
 import axiosInstance from "../../../../../api";
+import { toast } from "sonner";
 
 export function useUserManagement({}: UseUserManagementParams) {
   // States
@@ -116,7 +117,16 @@ export function useUserManagement({}: UseUserManagementParams) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await updateUser();
+    toast.promise(
+      async () => {
+        await updateUser();
+      },
+      {
+        loading: "Atualizando perfil...",
+        success: "Perfil atualizado com sucesso.",
+        error: "Erro ao atualizar perfil.",
+      }
+    );
   };
 
   return {

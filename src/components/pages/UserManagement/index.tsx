@@ -36,7 +36,6 @@ export const UserManagement: React.FC = () => {
         <Form onSubmit={handleSubmit}>
           <InputsContainer>
             <Input
-              required
               label="Cep"
               type="number"
               name="cep"
@@ -46,7 +45,6 @@ export const UserManagement: React.FC = () => {
             />
 
             <Input
-              required
               label="Rua:"
               type="text"
               name="street"
@@ -56,7 +54,6 @@ export const UserManagement: React.FC = () => {
             />
 
             <Input
-              required
               label="Bairo:"
               type="text"
               name="neighborhood"
@@ -66,7 +63,6 @@ export const UserManagement: React.FC = () => {
             />
 
             <Input
-              required
               label="Número:"
               type="number"
               name="number"
