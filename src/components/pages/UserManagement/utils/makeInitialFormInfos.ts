@@ -6,6 +6,7 @@ export const makeInitialInfosForm: FormInfos = {
         number: '',
         neighborhood: '',
         street: ''
-    }
+    },
+    photo: ''
 
 }

@@ -4,6 +4,7 @@ import React from "react";
 // Components
 import { Input } from "../../commons/toolkit/Input";
 import { Button } from "../../commons/toolkit/Button";
+import { Text } from "../../commons/toolkit/Text";
 
 // Hooks
 import { useUserManagement } from "./hooks/useUserManagement";
@@ -16,11 +17,14 @@ import {
   InputsContainer,
   Image,
   Card,
+  ImageInfosContainer,
 } from "./styles";
+import { ImagePicker } from "./components/ImagePicker";
 
 export const UserManagement: React.FC = () => {
   // Hooks
-  const { isLoading, formData, handleInputChange } = useUserManagement({});
+  const { isLoading, formData, handleInputChange, handleImageSelect } =
+    useUserManagement({});
 
   return (
     <Container>
@@ -70,10 +74,23 @@ export const UserManagement: React.FC = () => {
               value={formData.adress.number}
               onChange={handleInputChange}
             />
+            
+            <ImagePicker
+              image={formData.photo}
+              onImageChange={handleImageSelect}
+            />
+
+            {formData.photo ? (
+              <ImageInfosContainer>
+                <Text>Imagem de perfil selecionada:</Text>
+
+                <Image src={formData.photo} width={100} />
+              </ImageInfosContainer>
+            ) : null}
           </InputsContainer>
 
           <Button
-            label={isLoading ? "Carregando..." : "Acessar"}
+            label={isLoading ? "Carregando..." : "Salvar"}
             size="100%"
             disabled={isLoading}
           />
